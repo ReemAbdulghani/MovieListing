@@ -1,42 +1,24 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+    <v-app-bar app color="black" class="text-center" justify="space-around" dark>
+        <div class="text-h5 font-weight-bold">
+      <router-link :to="'/'" style="text-decoration: none" >
+          <span class="white--text">Movie</span><span class="orange--text">DB</span>
+          <v-divider color="orange" />
+      </router-link>
+        </div>
     </v-app-bar>
 
     <v-main>
       <router-view />
     </v-main>
+    <v-footer class="mt-5" color="black">
+      <v-spacer />
+      <strong class="white--text">&copy; MovieDB | 2021 </strong>
+      <v-spacer />
+    </v-footer>
   </v-app>
+  
 </template>
 
 <script>
