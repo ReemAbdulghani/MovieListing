@@ -1,7 +1,6 @@
 <template>
-  <span>
+  <span v-if="movieData && movieData.imdbID">
     <v-container
-    v-if="movieData && movieData.imdbID"
       fluid
     > 
       <v-row 
@@ -99,7 +98,10 @@
         </v-row>
       </v-container>
     </div>
-    </span>
+  </span>
+  <span v-else>
+    
+  </span>
 </template>
 <script>
 import { onBeforeMount, ref } from '@vue/composition-api';
@@ -107,10 +109,8 @@ import { onBeforeMount, ref } from '@vue/composition-api';
 export default {
   props: ['movieId'],
   setup(props) {
-    const movieData = ref({});
     const cachedMovies = ref([]);
-
-
+    const movieData = ref({});
     onBeforeMount(() => {
       // Retrieve movies in the cache (cachedMovies in the localStorage), if exists.
       if (localStorage.getItem('cachedMovies')) {
@@ -124,10 +124,7 @@ export default {
       // If the selected movie is cached, retrive it from the cache, otherwise fetch it from omdbapi
       const movieFromCache = findIfCached(props['movieId'])
       if (movieFromCache.length > 0) {
-          console.log('after checking the cache, yes ' + props['movieId'])
           movieData.value = movieFromCache[0];
-          console.log(movieData.value)
-          console.log(cachedMovies.value);
       } else {
         console.log('after checking the cache, no, so will fetch it')
         fetch(`http://www.omdbapi.com/?apikey=9c121b50&i=${props['movieId']}&plot=full`)
@@ -136,20 +133,16 @@ export default {
           movieData.value = resData;
 
           cachedMovies.value.push(movieData.value)
-          console.log(cachedMovies.value);
           const stringifiedCachedMovies = JSON.stringify(cachedMovies.value);
           localStorage.setItem('cachedMovies', stringifiedCachedMovies);
           });
       }
-
     })
 
     const findIfCached = (movieId) => {
-      console.log('inside the check fun' + movieId)
       const movie = cachedMovies.value.filter(
           movie => movie.imdbID === movieId
         )
-        console.log(movie.length)
         return movie
     }
 

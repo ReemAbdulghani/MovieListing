@@ -151,18 +151,14 @@ export default {
         isLoading.value = false;
         return
       }
-      if (isLoading.value) {
-        return // Means Items have already been requested.
-      }
-      isLoading.value = true;
       autocompleteSearchText();
     });
     const autocompleteSearchText = () => {
-      console.log('1')
       fetch(`http://www.omdbapi.com/?apikey=${env.api_key}&s=${searchText.value}&y=2020`)
         .then(res => res.json())
         .then(resData => {
           if (resData.Search && resData.Search.length > 0) {
+            isLoading.value = true;
             searchAutocompleteList.value = resData.Search;
             // Added this part to this function just to save one extra api request in the search func.
             if (selected.value !== null && selected.value !== '') {
@@ -175,7 +171,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-        //.finally(() => (isLoading.value = false));
     };
     
     //variableas, watch, and function related to the search.
@@ -186,7 +181,6 @@ export default {
     watch(searchResults, () => {
       if (searchResults.value !== [] || searchResults.value !== undefined) {
          imageShrinked.value = true;
-         //noMatchingResutls.value = false;
          searchAutocompleteList.value = [];
          selected.value = "";
          searchText.value = "";
@@ -196,10 +190,8 @@ export default {
     });
 
     const searchForMovies = () => {
-      console.log('2')
       if (selected.value === "") {
         if (searchText.value !== null && searchText.value !== '') {
-          console.log('here')
           selected.value = searchText.value;
         } else {
           return
@@ -212,7 +204,6 @@ export default {
             searchResults.value = resData.Search;
             noMatchingResutls.value = false;
           } else {
-            console.log('noMatchingResutls.value = true;')
             noMatchingResutls.value = true;
             searchResults.value = null;
           }
