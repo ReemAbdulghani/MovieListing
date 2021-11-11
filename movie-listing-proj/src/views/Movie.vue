@@ -100,7 +100,18 @@
     </div>
   </span>
   <span v-else>
-    
+    <v-row 
+      class="fill-height"
+      align="center"
+      justify="center"
+      
+    >
+      <v-progress-circular
+        :size="50"
+        color="amber"
+        indeterminate
+      />
+    </v-row>
   </span>
 </template>
 <script>
