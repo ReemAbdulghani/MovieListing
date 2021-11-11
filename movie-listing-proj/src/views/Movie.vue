@@ -137,7 +137,6 @@ export default {
       if (movieFromCache.length > 0) {
           movieData.value = movieFromCache[0];
       } else {
-        console.log('after checking the cache, no, so will fetch it')
         fetch(`http://www.omdbapi.com/?apikey=9c121b50&i=${props['movieId']}&plot=full`)
           .then(res => res.json())
           .then(resData => {

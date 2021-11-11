@@ -4,11 +4,11 @@
       src="https://www.teahub.io/photos/full/220-2205714_get-the-latest-movies-data-src-kodi-tv..jpg"
       class="align-end py-5 "
       v-bind:class="[imageShrinked ? 'shrinked' : 'expanded' ]"
-      gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.8)"
+      gradient="to top, rgba(0,0,0,.5), rgba(0,0,0,.8)"
       elevation="24" 
     >
-      <div class="display-1 font-weight-medium text-center white--text mb-5 hidden-sm-and-down">2020 MOVIES COLLECTION WITH OVER 10000 MOVIE!</div>
-      <div class="headline font-weight-medium text-center white--text hidden-md-and-up px-4">2020 MOVIES COLLECTION ! <br> CHECK THEM OUT</div>
+      <div class="display-1 font-weight-medium text-center white--text mb-5 hidden-sm-and-down">2020 MOVIES COLLECTION WITH OVER 10000 MOVIE !</div>
+      <div class="headline font-weight-medium text-center white--text hidden-md-and-up px-4">2020 MOVIES COLLECTION WITH OVER 10000 MOVIE !</div>
       <v-form @submit.prevent="searchForMovies()">
         <v-row >
           <v-col col="1" />
